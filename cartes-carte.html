@@ -1,0 +1,67 @@
+#SET{features,#ARRAY}
+<BOUCLE_cartes(DATA){source csv, #CHEMIN{shom/cartes.csv}}{cle >0}{longwest != ''}>[
+(#SET{coordinates,#LISTE{#LISTE{#LISTE{#VALEUR{longwest}|plus{0},#VALEUR{latnord}|plus{0}},#LISTE{#VALEUR{longest}|plus{0},#VALEUR{latnord}|plus{0}},#LISTE{#VALEUR{longest}|plus{0},#VALEUR{latsud}|plus{0}},#LISTE{#VALEUR{longwest}|plus{0},#VALEUR{latsud}|plus{0}},#LISTE{#VALEUR{longwest}|plus{0},#VALEUR{latnord}|plus{0}}}}})][
+(#SET{features,#GET{features}|push{#ARRAY{
+	type,Feature,
+	geometry,#ARRAY{type,Polygon,coordinates,#GET{coordinates}},
+	properties,#ARRAY{img,#VALEUR{nom_fichier},download,#VALEUR{lien}},
+	id,#COMPTEUR_BOUCLE,
+	}}})
+]</BOUCLE_cartes>
+
+<div id="map"></div>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+
+var map = L.map('map').setView([48, -3.5], 2);
+
+L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+}).addTo(map);
+
+var geojson = {"type": "FeatureCollection",
+	"features": [(#GET{features}|json_encode)]
+};
+
+/* classement z-index par bounds ? <= inutile car pas possible avec leaflet	
+geojson.features.sort(function(a,b){
+	if (L.latLngBounds(a.geometry.coordinates).contains(L.latLngBounds(b.geometry.coordinates)))
+		return -1;
+	if (L.latLngBounds(b.geometry.coordinates).contains(L.latLngBounds(a.geometry.coordinates)))
+		return 1;
+	else
+		return 0;
+});
+*/
+/* autres pistes pour améliorer la sélection de zones
+	https://github.com/mapbox/leaflet-pip
+	https://developers.route360.net/guide/turfjs-geojson
+	https://github.com/Turfjs/turf-difference
+	https://github.com/Turfjs/turf-donuts
+*/
+
+var geojsonLayer = L.geoJson(geojson, {
+	style: function (feature) {
+		return {fill: false, weight: 2, color: '#2ecc40'};
+	},
+	onEachFeature: function (feature, layer) {
+		layer.on('mouseover', function(e) {
+			e.target.setStyle({color: '#ff851b', weight: 6});
+		});
+		layer.on('mouseout', function(e) {
+			geojsonLayer.resetStyle(e.target);
+		});
+		layer.on('click', function(e) {
+			$.colorbox({
+				href: 'http://diffusion.shom.fr/ref/imagettes/ARCHIVES_' + feature.properties.img + '.jpg',
+				title: '<a href="' + feature.properties.download + '">Télécharger</a>'
+			});
+		});
+	}
+}).addTo(this.map);
+
+/*]]>*/
+</script>

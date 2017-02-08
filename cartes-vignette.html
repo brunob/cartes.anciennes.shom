@@ -1,0 +1,41 @@
+<B_cartes>
+#ANCRE_PAGINATION
+<ul class="liste vignettes grid-4 has-gutter">
+	<BOUCLE_cartes(DATA){source csv, #CHEMIN{shom/cartes.csv}}{cle >0}{par #ENV{tri,datepubf}}{pagination 32}>
+	[(#SET{img,[http://diffusion.shom.fr/ref/imagettes/ARCHIVES_(#VALEUR{nom_fichier}).jpg]})]
+	<li class="item">
+		<div class="card grid has-gutter" id="carte_#COMPTEUR_BOUCLE">
+			<div>
+				[<a href="#GET{img}" class="mediabox" rel="galerieauto">
+					(#GET{img}|image_reduire{180}|inserer_attribut{alt,''}|inserer_attribut{class,logo})
+				</a>]
+				<a href="#VALEUR{lien}" class="download">Télécharger</a><span class="sep"> | </span><a href="#carte_#COMPTEUR_BOUCLE" class="toggle">Détails</a>
+			</div>
+			<dl class="description three-quarters" id="desc_#COMPTEUR_BOUCLE">
+				[<dt>Auteur</dt><dd>(#VALEUR{auteur})</dd>]
+				[<dt>Publication</dt><dd>(#VALEUR{datepubf})</dd>]
+				[<dt>Échelle</dt><dd>(#VALEUR{echelle})</dd>]
+				[<dt>Format</dt><dd>(#VALEUR{format})</dd>]
+				[<dt>Zone</dt><dd>(#VALEUR{zone})</dd>]
+				[<dt>Pays</dt><dd>(#VALEUR{pays})</dd>]
+				[<dt>Région</dt><dd>(#VALEUR{region})</dd>]
+			</dl>
+		</div>
+	</li>
+	</BOUCLE_cartes>
+</ul>
+[<p class="pagination">(#PAGINATION{page_precedent_suivant,label_precedent='&lt;',label_suivant='&gt;'})</p>]
+</B_cartes>
+<script type="text/javascript">
+/*<![CDATA[*/
+;(function($){
+	$(function(){
+		$('.vignettes .item').addClass('plie');
+		$(".toggle").colorbox({
+			inline: true,
+			maxWidth: "80%"
+		});
+	});
+})(jQuery);
+/*]]>*/
+</script>

@@ -1,0 +1,20 @@
+<div class="options text-center">
+	Affichage : 
+	<a href="[(#SELF|parametre_url{layout,vignette})]" class="ajax[(#ENV{layout,vignette}|=={vignette}|oui)on]">Vignettes</a> - 
+	<a href="[(#SELF|parametre_url{layout,liste})]"class="ajax[(#ENV{layout,vignette}|=={liste}|oui)on]">Liste</a> - 
+	<a href="[(#SELF|parametre_url{layout,carte})]"class="ajax[(#ENV{layout,vignette}|=={carte}|oui)on]">Carte</a>[(#ENV{layout}|=={carte}|non)
+	| Trier par :
+	<form method="post" action="#">
+		<select name="tri" onchange="ajaxReload('content',{args:{tri:this.value}})">
+			<option value="auteur"[(#ENV{tri}|=={auteur}|oui)selected]>Auteur</option>
+			<option value="datepubf"[(#ENV{tri}|=={datepubf}|oui)selected]>Publication</option>
+			<option value="echelle"[(#ENV{tri}|=={echelle}|oui)selected]>Échelle</option>
+			<option value="format"[(#ENV{tri}|=={format}|oui)selected]>Format</option>
+			<option value="zone"[(#ENV{tri}|=={zone}|oui)selected]>Zone</option>
+			<option value="pays"[(#ENV{tri}|=={pays}|oui)selected]>Pays</option>
+			<option value="region"[(#ENV{tri}|=={region}|oui)selected]>Région</option>
+		</select>
+	</form>]
+</div>
+
+<INCLURE{fond=shom/cartes-#ENV{layout,vignette},ajax,env} />
