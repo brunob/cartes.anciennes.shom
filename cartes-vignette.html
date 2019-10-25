@@ -2,7 +2,7 @@
 #ANCRE_PAGINATION
 <ul class="liste vignettes grid-4 has-gutter">
 	<BOUCLE_cartes(DATA){source csv, #CHEMIN{shom/cartes.csv}}{cle >0}{par #ENV{tri,datepubf}}{pagination 32}>
-	[(#SET{img,[http://diffusion.shom.fr/ref/imagettes/ARCHIVES_(#VALEUR{nom_fichier}).jpg]})]
+	[(#SET{img,[https://services.data.shom.fr/static/imagettes/ARCHIVES_CARTES_MARINES_PACK_DL/ARCHIVES_(#VALEUR{nom_fichier}).png]})]
 	<li class="item">
 		<div class="card grid has-gutter" id="carte_#COMPTEUR_BOUCLE">
 			<div>

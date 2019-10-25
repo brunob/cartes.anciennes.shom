@@ -2,7 +2,7 @@
 #ANCRE_PAGINATION
 <ul class="liste fiches">
 	<BOUCLE_cartes(DATA){source csv, #CHEMIN{shom/cartes.csv}}{recherche ?}{cle >0}{par #ENV{tri,cle}}{pagination 30}>
-	[(#SET{img,[http://diffusion.shom.fr/ref/imagettes/ARCHIVES_(#VALEUR{nom_fichier}).jpg]})]
+	[(#SET{img,[https://services.data.shom.fr/static/imagettes/ARCHIVES_CARTES_MARINES_PACK_DL/ARCHIVES_(#VALEUR{nom_fichier}).png]})]
 	<li class="item">
 		<div class="card grid has-gutter clearfix">
 			<div class="text-center">
