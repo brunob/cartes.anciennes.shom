@@ -11,8 +11,8 @@
 	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
 	<INCLURE{fond=inclure/head} />
 	[<link rel="stylesheet" href="(#CHEMIN{shom/shom.css})" type="text/css" />]
-	<link rel="stylesheet" href="http://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-	<script src="http://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
 </head>
 
 <body class="pas_surlignable page_shom">
@@ -24,7 +24,7 @@
 	<div class="main">
 		<h1 class="h2 text-center">Cartes Marines Anciennes</h1>
 		
-		<p class="source"><a href="http://www.data.gouv.fr/fr/datasets/cartes-marines-anciennes-archives/">Donnés SHOM sous Licence Ouverte</a></p>
+		<p class="source"><a href="https://www.data.gouv.fr/fr/datasets/cartes-marines-anciennes-archives/">Donnés SHOM sous Licence Ouverte</a></p>
 
 		<INCLURE{fond=shom/content,ajax=content,tri=#ENV{tri,datepubf},env} />
 
