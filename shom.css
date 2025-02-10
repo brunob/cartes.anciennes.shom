@@ -15,7 +15,7 @@
 .page_shom .card .description dd { display: block; float: left; width: 28%; margin: 0; }
 .page_shom .card .description dt { color: #666; }
 .page_shom .card .description dd { width: 72%; word-wrap: break-word; }
-.page_shom .vignettes .item { margin-bottom: 2em; text-align: center; }
+.page_shom .vignettes .item { margin-bottom: 2em; }
 .page_shom .vignettes .item.plie .description { display: none; }
 .page_shom #colorbox .sep,
 .page_shom #colorbox .toggle { display: none; }

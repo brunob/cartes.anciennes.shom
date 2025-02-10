@@ -5,7 +5,7 @@
 	[(#SET{img,[https://services.data.shom.fr/static/imagettes/ARCHIVES_CARTES_MARINES_PACK_DL/ARCHIVES_(#VALEUR{nom_fichier}).png]})]
 	<li class="item">
 		<div class="card grid has-gutter" id="carte_#COMPTEUR_BOUCLE">
-			<div>
+			<div class="text-center">
 				[<a href="#GET{img}" class="mediabox" rel="galerieauto">
 					(#GET{img}|image_reduire{180}|inserer_attribut{alt,''}|inserer_attribut{class,logo})
 				</a>]
@@ -31,8 +31,8 @@
 ;(function($){
 	$(function(){
 		$('.vignettes .item').addClass('plie');
-		$(".toggle").colorbox({
-			inline: true,
+		$(".toggle").mediabox({
+			type: 'inline',
 			maxWidth: "80%"
 		});
 	});

@@ -55,7 +55,7 @@ var geojsonLayer = L.geoJson(geojson, {
 			geojsonLayer.resetStyle(e.target);
 		});
 		layer.on('click', function(e) {
-			$.colorbox({
+			$.mediabox({
 				href: 'https://services.data.shom.fr/static/imagettes/ARCHIVES_CARTES_MARINES_PACK_DL//ARCHIVES_' + feature.properties.img + '.png',
 				title: '<a href="' + feature.properties.download + '">Télécharger</a>'
 			});
